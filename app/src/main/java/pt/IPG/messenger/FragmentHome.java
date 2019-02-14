@@ -56,10 +56,10 @@ public class FragmentHome extends Fragment implements ChatAdapter.ViewHolder.Cli
     }
     public List<Chat> setData(){
         List<Chat> data = new ArrayList<>();
-        String name[]= {"Laura Owens", "Angela Price", "Donald Turner", "Kelly", "Julia Harris", "Laura Owens", "Angela Price", "Donald Turner", "Kelly", "Julia Harris" };
-        String lastchat[]= {"Hi Laura Owens", "Hi there how are you", "Can we meet?", "Ow this awesome", "How are you?", "Ow this awesome", "How are you?", "Ow this awesome", "How are you?", "How are you?" };
+        String name[]= {"Rita  Gomes", "Vicente  Pimentel", "Melissa  Andrade", "Filomena  Nascimento", "Carlos  Sá", "Cristiana  Valente", "Nádia  Lima", "Kevin  Cerqueira", "Manuel  Gonçalves", "Benedita  Fontes" };
+        String lastchat[]= {"Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa" };
 
-        @DrawableRes int img[]= {R.drawable.userpic , R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4 , R.drawable.userpic , R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4 };
+        @DrawableRes int img[]= {R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1 , R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1 };
         boolean online[] = {true, false, true, false, true, true, true, false, false, true};
 
         for (int i = 0; i<10; i++){
@@ -68,7 +68,7 @@ public class FragmentHome extends Fragment implements ChatAdapter.ViewHolder.Cli
             chat.setName(name[i]);
             chat.setImage(img[i]);
             chat.setOnline(online[i]);
-          //  chat.setLastChat(lastchat[i]);
+            chat.setLastChat(lastchat[i]);
             data.add(chat);
         }
         return data;
@@ -76,8 +76,11 @@ public class FragmentHome extends Fragment implements ChatAdapter.ViewHolder.Cli
 
     @Override
     public void onItemClicked (int position) {
-        startActivity(new Intent(getActivity(), Conversation.class));
-    }
+        // passar informação sobre conversa
+        Intent intent = new Intent(getActivity(), Conversation.class);
+        intent.putExtra("roomName", "ROOM_B");  // pass your values and retrieve them in the other Activity using keyName
+        startActivity(intent);
+     }
 
     @Override
     public boolean onItemLongClicked (int position) {

@@ -9,8 +9,19 @@ public class Chat {
     private String mName;
     private String mLastChat;
     private String mTime;
+
+    private String mRoom;
+
     private int mImage;
     private boolean online;
+
+    public String getRoom() {
+        return mRoom;
+    }
+
+    public void setRoom(String mRoom) {
+        this.mRoom = mRoom;
+    }
 
     public String getName() {
         return mName;
