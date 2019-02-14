@@ -2,10 +2,10 @@
 
 # Android Chat UI
 <img src="https://user-images.githubusercontent.com/2634610/52165634-3509eb00-26fb-11e9-8eef-c553c78997e4.png" width="250">
-![screenshot_20190214-004819](https://user-images.githubusercontent.com/2634610/52754390-448a0d80-2ff2-11e9-84cf-a7761e306d85.png)
+<img src="https://user-images.githubusercontent.com/2634610/52754390-448a0d80-2ff2-11e9-84cf-a7761e306d85.png" width="250">
 
 ## Version
-v0.1
+v0.2
 
 ### TODO
 
