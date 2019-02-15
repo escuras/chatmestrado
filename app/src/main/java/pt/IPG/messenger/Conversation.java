@@ -52,7 +52,7 @@ public class Conversation extends BaseActivity  {
     {
         try {
             //mSocket = IO.socket("http://chat-ipg.azurewebsites.net");
-            mSocket = IO.socket("http://9578ca1a.ngrok.io");
+            mSocket = IO.socket("http://chat-ipg-04.azurewebsites.net");
         } catch (URISyntaxException e) {}
     }
 
@@ -135,9 +135,9 @@ public class Conversation extends BaseActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation);
 
-        setupToolbarWithUpNav(R.id.toolbar, "Julia Harriss", R.drawable.ic_action_back);
+        setupToolbarWithUpNav(R.id.toolbar, "Julia do Trabalho", R.drawable.ic_action_back);
 
-        room = getIntent().getExtras().getString("roomName","defaultKey");
+      //  room = getIntent().getExtras().getString("roomName","defaultKey");
 
         // IPG - Alteração -------------- Daey
 
@@ -196,7 +196,7 @@ public class Conversation extends BaseActivity  {
                     item.setText(text.getText().toString());
                     data.add(item);
                     mAdapter.addItem(data);
-                    mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",text.getText().toString());
+                    mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",text.getText().toString(), "USER");
                    // mSocket.emit("refresh messages", text.getText().toString());
 
                     try {
