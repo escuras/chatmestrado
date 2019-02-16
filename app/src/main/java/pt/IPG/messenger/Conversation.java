@@ -90,7 +90,11 @@ public class Conversation extends BaseActivity  {
                         item.setType("1");
 
                         // IPG - Alteração -------------- Dinis
-                        item.setText(encryption.Decrypt(message));
+                        try {
+                            item.setText(new String(encryption.Decrypt(message)));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                         data.add(item);
                         mAdapter.addItem(data);
@@ -203,8 +207,12 @@ public class Conversation extends BaseActivity  {
                     mAdapter.addItem(data);
 
                     // IPG - Alteração -------------- Dinis
-                    mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",encryption.Encrypt(text.getText().toString(), Encryption.MessageType.Encrypted), "USER");
-
+                    try {
+                        mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",encryption.Encrypt(text.getText().toString(), Encryption.MessageType.Encrypted), "USER");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    
                     //mSocket.emit("refresh messages", text.getText().toString());
 
                     try {

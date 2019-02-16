@@ -75,18 +75,37 @@ public class Encryption {
      * Encrypts a byte array message
      * @param messageBytes can be a byte array that holds a string value, image bytes, voice byte data, etc...
      * @param type describes whether or not a message is to be encrypted
-     * @return Encrypted byte array encoded with base64 depending on MessageType specified
+     * @throws Exception MessageType must be either DecryptedBytes or EncryptedBytes
+     * @return Encrypted or Decrypted byte array encoded with base64 depending on MessageType specified
      */
-    public String Encrypt(byte[] messageBytes, MessageType type) {
-        return MessageType.EncryptedBytes.ordinal() +ENCRYPTION_SEPARATOR+ Base64.encodeToString(messageBytes, Base64.DEFAULT);
+    public String Encrypt(byte[] messageBytes, MessageType type) throws Exception {
+        if(type==MessageType.DecryptedBytes){
+            return type.ordinal()+ENCRYPTION_SEPARATOR+ Base64.encodeToString(messageBytes,Base64.DEFAULT);
+        }
+
+        if(type != MessageType.EncryptedBytes){
+            throw new Exception("Wrong encryption method or message type used!");
+        }
+
+        // Encode the original data with AES
+        byte[] encodedBytes = null;
+        try {
+            Cipher c = Cipher.getInstance("AES");
+            c.init(Cipher.ENCRYPT_MODE, sks);
+            encodedBytes = c.doFinal(messageBytes);
+        } catch (Exception e) {
+            Log.e(TAG, "AES encryption error");
+        }
+        return MessageType.EncryptedBytes.ordinal() +ENCRYPTION_SEPARATOR+ Base64.encodeToString(encodedBytes, Base64.DEFAULT);
     }
 
     /**
      * Decrypts a base64 string message
-     * @param message is data that has been encoded with base64 to be decrypted
+     * @param encodedMessage is data that has been encoded with base64 to be decrypted
+     * @throws Exception MessageType must be Encrypted
      * @return Decrypted data as String
      */
-    public String Decrypt(String message){
-        return Base64.encodeToString(message.getBytes(), Base64.DEFAULT);
+    public String Decrypt(String encodedMessage) throws Exception {
+        return Base64.encodeToString(encodedMessage.getBytes(), Base64.DEFAULT);
     }
 }
