@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pt.IPG.messenger.R;
-
 import java.util.List;
+
+import pt.IPG.messenger.R;
 
 /**
  * Created by Dytstudio.
