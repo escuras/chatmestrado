@@ -1,9 +1,11 @@
 package pt.IPG.messenger;
 
+import android.util.Base64;
 import android.util.Log;
 
 import java.security.SecureRandom;
 
+import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -11,6 +13,16 @@ import javax.crypto.spec.SecretKeySpec;
  * @author JDinis
  */
 public class Encryption {
+
+    public static final String ENCRYPTION_SEPARATOR = ":";
+
+    public enum MessageType {
+        Decrypted,
+        DecryptedBytes,
+        Encrypted,
+        EncryptedBytes
+    }
+
     static final String TAG = "SymmetricAlgorithmAES";
 
     // Set up secret key spec for 128-bit AES encryption and decryption
