@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.security.SecureRandom;
 
+import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -46,10 +47,28 @@ public class Encryption {
      * Encrypts a message string
      * @param message to be encrypted
      * @param type describes whether or not a message is to be encrypted
+     * @throws Exception MessageType must be either Decrypted or Encrypted
      * @return Encrypted message string encoded with base64 or Plain-Text message depending on MessageType specified
      */
-    public String Encrypt(String message, MessageType type){
-        return type.ordinal() +ENCRYPTION_SEPARATOR+ Base64.encodeToString(message.getBytes(), Base64.DEFAULT);
+    public String Encrypt(String message, MessageType type) throws Exception {
+        if(type==MessageType.Decrypted){
+            return type.ordinal()+ENCRYPTION_SEPARATOR+ message;
+        }
+
+        if(type != MessageType.Encrypted){
+            throw new Exception("Wrong encryption method or message type used!");
+        }
+
+        // Encode the original data with AES
+        byte[] encodedBytes = null;
+        try {
+            Cipher c = Cipher.getInstance("AES");
+            c.init(Cipher.ENCRYPT_MODE, sks);
+            encodedBytes = c.doFinal(message.getBytes());
+        } catch (Exception e) {
+            Log.e(TAG, "AES encryption error");
+        }
+        return MessageType.Encrypted.ordinal() +ENCRYPTION_SEPARATOR+ Base64.encodeToString(encodedBytes, Base64.DEFAULT);
     }
 
     /**
