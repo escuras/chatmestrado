@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import pt.IPG.messenger.recylcerchat.ChatData;
-import pt.IPG.messenger.recylcerchat.ConversationRecyclerView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,14 +28,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import pt.IPG.messenger.recylcerchat.ChatData;
+import pt.IPG.messenger.recylcerchat.ConversationRecyclerView;
 
 
 public class Conversation extends BaseActivity  {
@@ -44,6 +41,9 @@ public class Conversation extends BaseActivity  {
     private ConversationRecyclerView mAdapter;
     private EditText text;
     private Button send;
+
+    // IPG - Alteração -------------- Dinis
+    private Encryption encryption;
 
     String room = "";
 
@@ -88,7 +88,14 @@ public class Conversation extends BaseActivity  {
                         ChatData item = new ChatData();
                         item.setTime("6:00pm");
                         item.setType("1");
-                        item.setText(message);
+
+                        // IPG - Alteração -------------- Dinis
+                        try {
+                            item.setText(new String(encryption.Decrypt(message)));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                         data.add(item);
                         mAdapter.addItem(data);
                         try {
@@ -139,8 +146,10 @@ public class Conversation extends BaseActivity  {
 
       //  room = getIntent().getExtras().getString("roomName","defaultKey");
 
-        // IPG - Alteração -------------- Daey
+        // IPG - Alteração -------------- Dinis
+        encryption = new Encryption();
 
+        // IPG - Alteração -------------- Daey
         mSocket.emit("enter conversation", "5c669ed2e43e3d3e244f4ae8");
         mSocket.on("refresh messages", onNewMessage);
         ///mSocket.emit("new message", "Hello !!!!!");
@@ -196,8 +205,15 @@ public class Conversation extends BaseActivity  {
                     item.setText(text.getText().toString());
                     data.add(item);
                     mAdapter.addItem(data);
-                    mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",text.getText().toString(), "USER");
-                   // mSocket.emit("refresh messages", text.getText().toString());
+
+                    // IPG - Alteração -------------- Dinis
+                    try {
+                        mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",encryption.Encrypt(text.getText().toString(), Encryption.MessageType.Encrypted), "USER");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    
+                    //mSocket.emit("refresh messages", text.getText().toString());
 
                     try {
                         mRecyclerView.smoothScrollToPosition(mRecyclerView.getAdapter().getItemCount() -1);
