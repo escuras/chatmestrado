@@ -32,15 +32,15 @@ public class Encryption {
      * Instantiates the class Encryption by generating a secret key
      */
     public Encryption() {
-            try {
-                SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
-                sr.setSeed("Chat-RSCM".getBytes());
-                KeyGenerator kg = KeyGenerator.getInstance("AES");
-                kg.init(128, sr);
-                sks = new SecretKeySpec((kg.generateKey()).getEncoded(), "AES");
-            } catch (Exception e) {
-                Log.e(TAG, "AES secret key spec error");
-            }
+        try {
+            SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+            sr.setSeed("Chat-RSCM".getBytes());
+            KeyGenerator kg = KeyGenerator.getInstance("AES");
+            kg.init(128, sr);
+            sks = new SecretKeySpec((kg.generateKey()).getEncoded(), "AES");
+        } catch (Exception e) {
+            Log.e(TAG, "AES secret key spec error");
+        }
     }
 
     /**
@@ -106,6 +106,31 @@ public class Encryption {
      * @return Decrypted data as String
      */
     public String Decrypt(String encodedMessage) throws Exception {
-        return Base64.encodeToString(encodedMessage.getBytes(), Base64.DEFAULT);
+        int type = Integer.parseInt(encodedMessage.split(ENCRYPTION_SEPARATOR)[0]);
+        String message = encodedMessage.split(ENCRYPTION_SEPARATOR)[1];
+        byte[] decodedBytes = null;
+        String result = null;
+
+        switch (MessageType.values()[type]){
+            case Decrypted:
+            case DecryptedBytes:
+                return message;
+            case Encrypted:
+            case EncryptedBytes:
+                // Decode the encoded data with AES
+                try {
+                    Cipher c = Cipher.getInstance("AES");
+                    c.init(Cipher.DECRYPT_MODE, sks);
+                    decodedBytes = c.doFinal(Base64.decode(message, Base64.DEFAULT));
+                } catch (Exception e) {
+                    Log.e(TAG, "AES decryption error");
+                }
+
+                result = (type==MessageType.EncryptedBytes.ordinal()) ? Base64.encodeToString(decodedBytes,Base64.DEFAULT) : new String(decodedBytes);
+                break;
+            default:
+                throw new Exception("Wrong decryption method or encryption message type used!");
+        }
+        return result;
     }
 }
