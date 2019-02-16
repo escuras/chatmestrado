@@ -5,7 +5,6 @@ import android.util.Log;
 
 import java.security.SecureRandom;
 
-import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -41,5 +40,34 @@ public class Encryption {
             } catch (Exception e) {
                 Log.e(TAG, "AES secret key spec error");
             }
+    }
+
+    /**
+     * Encrypts a message string
+     * @param message to be encrypted
+     * @param type describes whether or not a message is to be encrypted
+     * @return Encrypted message string encoded with base64 or Plain-Text message depending on MessageType specified
+     */
+    public String Encrypt(String message, MessageType type){
+        return type.ordinal() +ENCRYPTION_SEPARATOR+ Base64.encodeToString(message.getBytes(), Base64.DEFAULT);
+    }
+
+    /**
+     * Encrypts a byte array message
+     * @param messageBytes can be a byte array that holds a string value, image bytes, voice byte data, etc...
+     * @param type describes whether or not a message is to be encrypted
+     * @return Encrypted byte array encoded with base64 depending on MessageType specified
+     */
+    public String Encrypt(byte[] messageBytes, MessageType type) {
+        return MessageType.EncryptedBytes.ordinal() +ENCRYPTION_SEPARATOR+ Base64.encodeToString(messageBytes, Base64.DEFAULT);
+    }
+
+    /**
+     * Decrypts a base64 string message
+     * @param message is data that has been encoded with base64 to be decrypted
+     * @return Decrypted data as String
+     */
+    public String Decrypt(String message){
+        return Base64.encodeToString(message.getBytes(), Base64.DEFAULT);
     }
 }

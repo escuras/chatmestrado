@@ -88,7 +88,10 @@ public class Conversation extends BaseActivity  {
                         ChatData item = new ChatData();
                         item.setTime("6:00pm");
                         item.setType("1");
-                        item.setText(message);
+
+                        // IPG - Alteração -------------- Dinis
+                        item.setText(encryption.Decrypt(message));
+
                         data.add(item);
                         mAdapter.addItem(data);
                         try {
@@ -198,8 +201,11 @@ public class Conversation extends BaseActivity  {
                     item.setText(text.getText().toString());
                     data.add(item);
                     mAdapter.addItem(data);
-                    mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",text.getText().toString(), "USER");
-                   // mSocket.emit("refresh messages", text.getText().toString());
+
+                    // IPG - Alteração -------------- Dinis
+                    mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",encryption.Encrypt(text.getText().toString(), Encryption.MessageType.Encrypted), "USER");
+
+                    //mSocket.emit("refresh messages", text.getText().toString());
 
                     try {
                         mRecyclerView.smoothScrollToPosition(mRecyclerView.getAdapter().getItemCount() -1);
