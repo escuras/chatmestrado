@@ -39,7 +39,7 @@ v0.2
 
 ### Requisitos de Modos de comunicação
 - [ ] Comunicação por infra-estrutura
-- [ ] Utilização de rede wifi ou Ethernet para comunicar
+- [X] Utilização de rede wifi ou Ethernet para comunicar
 - [ ] Comunicação Standalone
 - [ ] Estabelecimento de comunicação via Bluetooth com os dispositivos que são detectados
 
