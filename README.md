@@ -1,6 +1,6 @@
 # API end Point com Mongodb
 
-### Chat OK entre vários utilizadores:
+### Chat OK entre vários utilizadores (Guarda histórico na base dados MongoDB com API):
 
 1: fazer registo (Ainda só na API) :http://chat-ipg-04.azurewebsites.net/api/auth/register
 
