@@ -3,11 +3,15 @@
 ### Chat OK entre vários utilizadores:
 
 1: fazer registo (Ainda só na API) :http://chat-ipg-04.azurewebsites.net/api/auth/register
+
 2: criar contactos (Ainda Só na API) : http://chat-ipg-04.azurewebsites.net/api/chat/new/"ID_do_utilizador_a_adicionar" (deve ser colocar JWT token de autenticação)
  
 2: abrir Android chat e fazer login com email+password do registo
+
 3: ver que o contacto já está criado
+
 4: enviar mensagens encriptadas entre utilizadores
+
 
 
 
