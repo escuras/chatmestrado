@@ -1,4 +1,17 @@
 # API end Point com Mongodb
+
+### Chat OK entre vários utilizadores:
+
+### 1: fazer registo (Ainda só na API) :http://chat-ipg-04.azurewebsites.net/api/auth/register
+### 2: criar contactos (Ainda Só na API) : http://chat-ipg-04.azurewebsites.net/api/chat/new/"ID do utilizador a adicionar"
+ (deve ser colocar JWT token de autenticação)
+ 
+### 2: abrir Android chat e fazer login com email+password do registo
+### 3: ver que o contacto já está criado
+### 4: enviar mensagens encriptadas entre utilizadores
+
+
+
 ## Documentação
 https://documenter.getpostman.com/view/1885494/S11Bxgv2#6bf6dd63-7868-4b61-9859-1da9983f0bec
 
