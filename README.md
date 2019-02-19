@@ -49,7 +49,7 @@ v0.2
 - [ ] Comunicação em claro ou encriptada por selecção explicita da encriptação por parte dos utilizadores
 
 ### Requisitos de implementação - Segurança
-- [ ] Comunicação em claro com verificação da integridade da comunicação
+- [X] Comunicação em claro com verificação da integridade da comunicação
 - [ ] Escolha de um dos algoritmos MD5 ou SHA Hash Algorithms: SHA-1, HAVAL, MD2, MD5, SHA-256, SHA-384, SHA-512
 - [x] Comunicação encriptada de mensagens
 - [ ] Escolha de um dos protocolos DES, 3DES ou AES
