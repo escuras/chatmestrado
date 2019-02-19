@@ -126,8 +126,10 @@ public class MainActivity extends BaseActivity
 
 
     public String getJSONFromUrl() {
+        SharedPreferences settings = MainActivity.this.getSharedPreferences("myPrefs", 0);
+        String tokenOK = settings.getString("token", ""/*default value*/);
 
-        String tokenOK = "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YzY2OWU4YWU0M2UzZDNlMjQ0ZjRhZTciLCJmaXJzdE5hbWUiOiJEYW5pZWwiLCJsYXN0TmFtZSI6Ik1lbmRlcyIsImVtYWlsIjoiZGFuaWVsQGVwdC5wdCIsInJvbGUiOiJNZW1iZXIiLCJpYXQiOjE1NTA0OTQ3NDAsImV4cCI6MTU1MTA5OTU0MH0.pNmjguEXsaHDBIp1Hwt5BuzF74iSlFqsqMZCrendwxk";
+        //String tokenOK = "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YzY2OWU4YWU0M2UzZDNlMjQ0ZjRhZTciLCJmaXJzdE5hbWUiOiJEYW5pZWwiLCJsYXN0TmFtZSI6Ik1lbmRlcyIsImVtYWlsIjoiZGFuaWVsQGVwdC5wdCIsInJvbGUiOiJNZW1iZXIiLCJpYXQiOjE1NTA0OTQ3NDAsImV4cCI6MTU1MTA5OTU0MH0.pNmjguEXsaHDBIp1Hwt5BuzF74iSlFqsqMZCrendwxk";
         String result ="";
         try {
             //Connect

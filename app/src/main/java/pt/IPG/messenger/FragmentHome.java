@@ -108,8 +108,8 @@ public class FragmentHome extends Fragment implements ChatAdapter.ViewHolder.Cli
     public List<Chat> setData(){
         // RECEBER conversas vers 0.1
 
-        String name[]= {"Rita  Gomes" }; //, "Vicente  Pimentel", "Melissa  Andrade", "Filomena  Nascimento", "Carlos  Sá", "Cristiana  Valente", "Nádia  Lima", "Kevin  Cerqueira", "Manuel  Gonçalves", "Benedita  Fontes" };
-        String lastchat[]= {"Última conversa" }; //, "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa" };
+        //String name[]= {"Rita  Gomes" }; //, "Vicente  Pimentel", "Melissa  Andrade", "Filomena  Nascimento", "Carlos  Sá", "Cristiana  Valente", "Nádia  Lima", "Kevin  Cerqueira", "Manuel  Gonçalves", "Benedita  Fontes" };
+        //String lastchat[]= {"Última conversa" }; //, "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa", "Última conversa" };
 
         @DrawableRes int img[]= {R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1 , R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1 };
         boolean online[] = {true, false, true, false, true, true, true, false, false, true};
@@ -133,8 +133,14 @@ public class FragmentHome extends Fragment implements ChatAdapter.ViewHolder.Cli
         @Override
     public void onItemClicked (int position) {
         // passar informação sobre conversa
-        Intent intent = new Intent(getActivity(), Conversation.class);
-        intent.putExtra("roomName", "ROOM_B");  // pass your values and retrieve them in the other Activity using keyName
+            SharedPreferences settings = getActivity().getSharedPreferences("myPrefs", 0);
+            String ID = settings.getString("ID", ""/*default value*/);
+
+            Intent intent = new Intent(getActivity(), Conversation.class);
+            String room = ((TextView) mRecyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tv_last_chat)).getText().toString();
+
+            intent.putExtra("roomName", room);  // pass your values and retrieve them in the other Activity using keyName
+            intent.putExtra("ID", ID);  // pass your values and retrieve them in the other Activity using keyName
         startActivity(intent);
      }
 

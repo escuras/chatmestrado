@@ -47,6 +47,7 @@ public class Conversation extends BaseActivity  {
     private Encryption encryption;
 
     String room = "";
+    String ID = "";
 
     // IPG - Alteração -------------- Daey
     private Socket mSocket;
@@ -76,14 +77,9 @@ public class Conversation extends BaseActivity  {
                         return;
                     }
 
-                 /*   ChatView chatView = (ChatView) findViewById(R.id.chat_view);
-                    // add the message to view
-                    //   chatView.addMessage(new ChatMessage("Message received", System.currentTimeMillis(), ChatMessage.Type.RECEIVED));
-                    chatView.addMessage(new ChatMessage(message,
-                            System.currentTimeMillis(), ChatMessage.Type.RECEIVED, username));
-                */
 
-                 //problema com broadcast to self
+                    if(!username.equals(ID)){
+                        //problema com broadcast to self
 
                         List<ChatData> data = new ArrayList<ChatData>();
                         ChatData item = new ChatData();
@@ -92,7 +88,9 @@ public class Conversation extends BaseActivity  {
 
                         // IPG - Alteração -------------- Dinis
                         try {
-                            item.setText(new String(encryption.Decrypt(message)));
+                            item.setText(message);
+                            // DINIS .. não funciona aqui quando recebo do servidor
+                            // item.setText(new String(encryption.Decrypt(message)));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -106,6 +104,7 @@ public class Conversation extends BaseActivity  {
                         }
                         //text.setText("");
 
+                    }
 
                 }
 
@@ -145,13 +144,15 @@ public class Conversation extends BaseActivity  {
 
         setupToolbarWithUpNav(R.id.toolbar, "Julia do Trabalho", R.drawable.ic_action_back);
 
-      //  room = getIntent().getExtras().getString("roomName","defaultKey");
+        room = getIntent().getExtras().getString("roomName",null);
+        ID = getIntent().getExtras().getString("ID",null);
+
 
         // IPG - Alteração -------------- Dinis
         encryption = new Encryption();
 
         // IPG - Alteração -------------- Daey
-        mSocket.emit("enter conversation", "5c669ed2e43e3d3e244f4ae8");
+        mSocket.emit("enter conversation", room);
         mSocket.on("refresh messages", onNewMessage);
         ///mSocket.emit("new message", "Hello !!!!!");
 
@@ -209,7 +210,8 @@ public class Conversation extends BaseActivity  {
 
                     // IPG - Alteração -------------- Dinis
                     try {
-                        mSocket.emit("new message", "5c669ed2e43e3d3e244f4ae8",encryption.Encrypt(text.getText().toString(), Encryption.MessageType.Encrypted), "USER");
+                        //mSocket.emit("new message", room, encryption.Encrypt(text.getText().toString(), Encryption.MessageType.Encrypted), ID);
+                        mSocket.emit("new message", room, text.getText() , ID);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -280,26 +282,6 @@ public class Conversation extends BaseActivity  {
 
     }
 
-    public static class ArrayUtil
-    {
-        public static ArrayList<Object> convert(JSONArray jArr)
-        {
-            ArrayList<Object> list = new ArrayList<Object>();
-            try {
-                for (int i=0, l=jArr.length(); i<l; i++){
-                    list.add(jArr.get(i));
-                }
-            } catch (JSONException e) {}
-
-            return list;
-        }
-
-        public static JSONArray convert(Collection<Object> list)
-        {
-            return new JSONArray(list);
-        }
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -309,48 +291,6 @@ public class Conversation extends BaseActivity  {
     }
 
 
-
-    // UTIL
-    private String read(Context context, String fileName) {
-        try {
-            FileInputStream fis = context.openFileInput(fileName);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader bufferedReader = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                sb.append(line);
-            }
-            return sb.toString();
-        } catch (FileNotFoundException fileNotFound) {
-            return null;
-        } catch (IOException ioException) {
-            return null;
-        }
-    }
-
-    private boolean create(Context context, String fileName, String jsonString){
-        String FILENAME = "storage.json";
-        try {
-            FileOutputStream fos = context.openFileOutput(fileName,Context.MODE_PRIVATE);
-            if (jsonString != null) {
-                fos.write(jsonString.getBytes());
-            }
-            fos.close();
-            return true;
-        } catch (FileNotFoundException fileNotFound) {
-            return false;
-        } catch (IOException ioException) {
-            return false;
-        }
-
-    }
-
-    public boolean isFilePresent(Context context, String fileName) {
-        String path = context.getFilesDir().getAbsolutePath() + "/" + fileName;
-        File file = new File(path);
-        return file.exists();
-    }
 
 
 }
