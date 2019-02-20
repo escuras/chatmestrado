@@ -1,3 +1,5 @@
+<a href="http://mcm.ipg.pt"><img src="http://www.ipg.pt/website/imgs/logotipo_ipg.jpg" title="IPG(MCM)" alt="IPG MCM 2018/19"></a>
+
 # API end Point com Mongodb
 
 ### Chat OK entre vários utilizadores (Guarda histórico na base dados MongoDB com API):
@@ -21,8 +23,6 @@
 https://documenter.getpostman.com/view/1885494/S11Bxgv2#6bf6dd63-7868-4b61-9859-1da9983f0bec
 
 ### TODO
-
-
 # Functionality
 
 ### Funcionalidades - Serviços
@@ -47,13 +47,6 @@ https://documenter.getpostman.com/view/1885494/S11Bxgv2#6bf6dd63-7868-4b61-9859-
 - [x] Comunicação encriptada de mensagens
 - [ ] Escolha de um dos protocolos DES, 3DES ou AES
 
-
-
-<a href="http://mcm.ipg.pt"><img src="http://www.ipg.pt/website/imgs/logotipo_ipg.jpg" title="IPG(MCM)" alt="IPG MCM 2018/19"></a>
-
-# Android Chat UI
-<img src="https://user-images.githubusercontent.com/2634610/52165634-3509eb00-26fb-11e9-8eef-c553c78997e4.png" width="250">
-<img src="https://user-images.githubusercontent.com/2634610/52754390-448a0d80-2ff2-11e9-84cf-a7761e306d85.png" width="250">
 
 ## Version
 v0.2
