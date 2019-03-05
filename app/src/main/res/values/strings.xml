@@ -15,6 +15,9 @@
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="client_api_id">410539729997-rs8l7p3mt2bnd861ea7u3rgmnm3h9utg.apps.googleusercontent.com</string>
+    <string name="transfer_to">Transfer to</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -22,4 +25,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="public_key">BEE/xJDAah9rU1aIta5yjJA6Fvh9knh/b39GdjP15TljRwBYNSXRUsR0AOTqtUBwar7cF/qklMc8z+oT+aHy6sw=</string>
+    <string name="Deliver">Deliver</string>
 </resources>

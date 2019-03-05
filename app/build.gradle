@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "pt.IPG.messenger"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -30,8 +30,12 @@ dependencies {
     implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.android.gms:play-services-wallet:16.0.0'
+    implementation 'com.android.support:appcompat-v7'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
+
+    testImplementation 'junit:junit:4.12'
 
     // CHAT SOCKET.IO IPG alteração
     api ('io.socket:socket.io-client:1.0.0'){

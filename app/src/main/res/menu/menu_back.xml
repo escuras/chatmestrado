@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_back"
+        android:title="Search"
+        android:icon="@drawable/ic_action_back"
+        android:menuCategory="secondary"
+        app:showAsAction="ifRoom" />
+</menu>

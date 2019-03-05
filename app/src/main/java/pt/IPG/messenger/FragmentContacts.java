@@ -52,13 +52,14 @@ public class FragmentContacts extends Fragment implements ContactAdapter.ViewHol
     public List<Contact> setData(){
         List<Contact> data = new ArrayList<>();
 
-        String name[]= {"Rita  Gomes", "Vicente  Pimentel", "Melissa  Andrade", "Filomena  Nascimento", "Carlos  Sá", "Cristiana  Valente", "Nádia  Lima", "Kevin  Cerqueira", "Manuel  Gonçalves", "Benedita  Fontes" };
-        @DrawableRes int img[]= {R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1 , R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1 };
-
-        for (int i = 0; i<10; i++){
+        String name[]= {"Rita  Gomes", "Vicente  Pimentel", "Melissa  Andrade", "Filomena  Nascimento", "Carlos  Sá", "Cristiana  Valente", "Nádia  Lima", "Kevin  Cerqueira", "Manuel  Gonçalves", "Benedita  Fontes", "António Santos" };
+        @DrawableRes int img[]= {R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1 , R.drawable.user1 , R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user1, R.drawable.user2 };
+        String[] emails = {"rita@gmail.com", "pimental@gmail.com", "mandrade@gmail.com", "fnascimento@gmail.com", "csa@sapo.pt", "crisvalente@gmail.com", "nlima@sapo.pt", "kcerqueira@hotmail.com", "mgoncalves@hotmail.com", "bfontes@sapo.pt", "tozeps@gmail.com" };
+        for (int i = 0; i < name.length; i++){
             Contact contact = new Contact();
             contact.setName(name[i]);
             contact.setImage(img[i]);
+            contact.setEmail(emails[i]);
             data.add(contact);
         }
         return data;

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -109,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
     }
 
     private void populateAutoComplete() {
@@ -352,10 +354,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     String ID = userObject.getString("_id");
 
                     //store
-                    SharedPreferences settings = getSharedPreferences("myPrefs", 0);
+                    SharedPreferences settings = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString("token", token);
                     editor.putString("ID", ID);
+                    editor.putString("email", mEmail);
                     editor.commit();
 
                   //  SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
@@ -371,7 +374,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 return true;
             }else{
-                return false;
+                return true;
             }
 
         }

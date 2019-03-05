@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="233dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/transfer" />
+
+    <TextView
+        android:id="@+id/textViewPaymentsUser"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:minHeight="125dp"
+        android:paddingTop="@dimen/default_timestamp_text_size"
+        android:paddingBottom="@dimen/default_timestamp_text_size"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editPayment"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="textEnd"
+        android:textSize="36sp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdge="horizontal|vertical"
+        android:minHeight="52dp"
+        android:text="@string/action_confirm"
+        android:textAlignment="textEnd" />
+
+    <Button
+        android:id="@+id/buttonPayments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="73dp"
+        android:text="@string/Deliver" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+</LinearLayout>

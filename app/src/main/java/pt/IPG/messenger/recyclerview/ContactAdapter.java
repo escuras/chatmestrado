@@ -32,6 +32,10 @@ public class ContactAdapter extends SelectableAdapter<ContactAdapter.ViewHolder>
 
     }
 
+    public List<Contact> getContacts(){
+       return mArrayList;
+    }
+
     // Create new views
     @Override
     public ContactAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,

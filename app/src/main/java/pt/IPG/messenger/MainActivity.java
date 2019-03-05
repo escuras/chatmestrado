@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -200,7 +201,6 @@ public class MainActivity extends BaseActivity
                 drawer.openDrawer(GravityCompat.START);  // OPEN DRAWER
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -209,21 +209,33 @@ public class MainActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         FragmentTransaction ft;
+
+
         int id = item.getItemId();
+        switch(id){
+            case R.id.nav_contacts:
+                FragmentContacts fragmentContacts = new FragmentContacts();
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, fragmentContacts).addToBackStack(null).commit();
+                break;
+            case R.id.nav_payments:
+                FragmentPayments fragmentPayments = new FragmentPayments();
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, fragmentPayments).commit();
+                break;
+            case R.id.nav_chats:
+                FragmentHome fragmentHome = new FragmentHome();
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, fragmentHome).commit();
+                break;
+            case R.id.nav_trash:
+            case R.id.nav_settings:
+            case R.id.nav_logout:
+                break;
+            default:
+                break;
 
-        if (id == R.id.nav_contacts) {
-            FragmentContacts fragmentContacts = new FragmentContacts();
-            ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.frameLayout, fragmentContacts).addToBackStack(null).commit();
-        } else if (id == R.id.nav_chats) {
-            FragmentHome fragmentHome = new FragmentHome();
-            ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.frameLayout, fragmentHome).commit();
-        } else if (id == R.id.nav_trash) {
-        } else if (id == R.id.nav_settings) {
-        } else if (id == R.id.nav_logout) {
         }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
