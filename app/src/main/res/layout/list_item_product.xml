@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_product_photo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_marginLeft="@dimen/space10"
+            android:layout_marginRight="@dimen/space10"
+            android:layout_toRightOf="@id/chk_list"
+            android:src="@drawable/product" />
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            style="@style/h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Product"
+            android:textAppearance="@style/Light" />
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="fill_vertical|end"
+            android:text="Price"
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/Light" />
+    </LinearLayout>
+
+</RelativeLayout>

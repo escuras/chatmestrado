@@ -28,11 +28,12 @@
         android:layout_height="89dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:text="0.0"
         android:textAlignment="textEnd"
         android:textSize="36sp" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switchPayments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fadingEdge="horizontal|vertical"

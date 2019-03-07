@@ -6,14 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -71,18 +69,6 @@ public class FragmentPayments extends Fragment implements ContactAdapter.ViewHol
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                System.out.println(R.id.action_search);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return false;
     }
@@ -92,8 +78,23 @@ public class FragmentPayments extends Fragment implements ContactAdapter.ViewHol
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.action_back:
+                FragmentContacts fragmentContacts = new FragmentContacts();
+                FragmentTransaction ft = activityHome.getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frameLayout, fragmentContacts).commit();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.menu_search, menu);
+        inflater.inflate(R.menu.menu_back, menu);
     }
 }

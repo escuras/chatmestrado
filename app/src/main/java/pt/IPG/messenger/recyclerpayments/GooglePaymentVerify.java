@@ -1,7 +1,6 @@
 package pt.IPG.messenger.recyclerpayments;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,7 +14,7 @@ import org.json.JSONObject;
 
 import java.util.Optional;
 
-public class PaymentVerify {
+public class GooglePaymentVerify {
 
 
     public static Task check(PaymentsClient mPaymentsClient){
@@ -38,9 +37,9 @@ public class PaymentVerify {
 
     public static Optional<JSONObject> getIsReadyToPayRequest() {
         try {
-            JSONObject isReadyToPayRequest = PaymentUtils.getBaseRequest();
+            JSONObject isReadyToPayRequest = GooglePaymentUtils.getBaseRequest();
             isReadyToPayRequest.put(
-                    "allowedPaymentMethods", new JSONArray().put(PaymentUtils.getBaseCardPaymentMethod()));
+                    "allowedPaymentMethods", new JSONArray().put(GooglePaymentUtils.getBaseCardPaymentMethod()));
             return Optional.of(isReadyToPayRequest);
         } catch (JSONException e) {
             return Optional.empty();

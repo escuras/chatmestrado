@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PaymentUtils {
+public class GooglePaymentUtils {
 
     public static JSONObject getBaseRequest() {
         JSONObject apiVersion = new JSONObject();
@@ -14,7 +14,7 @@ public class PaymentUtils {
             apiVersion.put("apiVersion", 2);
             apiVersion.put("apiVersionMinor", 0);
         } catch (JSONException ex){
-            Log.w("PaymentUtils", ex.getMessage());
+            Log.w("GooglePaymentUtils", ex.getMessage());
         }
         return apiVersion;
     }
@@ -29,7 +29,7 @@ public class PaymentUtils {
                             .put("protocolVersion", "ECv1")
                             .put("publicKey", pubKey));
         } catch (JSONException ex) {
-            Log.w("PaymentUtils", ex.getMessage());
+            Log.w("GooglePaymentUtils", ex.getMessage());
         }
         return tokenizationSpecification;
     }
@@ -59,7 +59,7 @@ public class PaymentUtils {
                             .put("allowedAuthMethods", getAllowedCardAuthMethods())
                             .put("allowedCardNetworks", getAllowedCardNetworks()));
         } catch (JSONException ex) {
-            Log.w("PaymentUtils", ex.getMessage());
+            Log.w("GooglePaymentUtils", ex.getMessage());
         }
         return cardPaymentMethod;
     }
@@ -69,7 +69,7 @@ public class PaymentUtils {
         try {
             cardPaymentMethod.put("tokenizationSpecification", getTokenizationSpecification(pubKey));
         } catch (JSONException ex) {
-            Log.w("PaymentUtils", ex.getMessage());
+            Log.w("GooglePaymentUtils", ex.getMessage());
         }
         return cardPaymentMethod;
     }

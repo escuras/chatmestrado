@@ -18,6 +18,12 @@
     <string name="action_confirm">Confirm</string>
     <string name="client_api_id">410539729997-rs8l7p3mt2bnd861ea7u3rgmnm3h9utg.apps.googleusercontent.com</string>
     <string name="transfer_to">Transfer to</string>
+    <string name="value_to_pay">Value to pay</string>
+    <string name="transfer_finish">Transfer finish succesfull.</string>
+    <string name="transfer_canceled">Transfer was canceled.</string>
+    <string name="payment_finish">Payment finish succesfull.</string>
+    <string name="payment_canceled">Payment was canceled.</string>
+    <string name="error_payment">There was an error trying to finish the transaction. Message was:</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -27,4 +33,6 @@
     </string>
     <string name="public_key">BEE/xJDAah9rU1aIta5yjJA6Fvh9knh/b39GdjP15TljRwBYNSXRUsR0AOTqtUBwar7cF/qklMc8z+oT+aHy6sw=</string>
     <string name="Deliver">Deliver</string>
+    <string name="buy">Buy</string>
+    <string name="Pay">pay</string>
 </resources>

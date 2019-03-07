@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import java.util.Optional;
 
-public class PaymentRequest {
+public class GooglePaymentRequest {
 
     private static String[] currencies = {"EUR", "USD"};
     private String pubKey;
@@ -16,7 +16,7 @@ public class PaymentRequest {
     private String currency = currencies[0];
     private String merchantName;
 
-    public PaymentRequest(String pubKey, String merchantName, String totalPrice) {
+    public GooglePaymentRequest(String pubKey, String merchantName, String totalPrice) {
         this.pubKey = pubKey;
         this.merchantName = merchantName;
         this.totalPrice = totalPrice;
@@ -60,7 +60,7 @@ public class PaymentRequest {
             transactionInfo.put("totalPriceStatus", "FINAL");
             transactionInfo.put("currencyCode", currency);
         } catch (JSONException ex) {
-            Log.w("PaymentRequest", ex.getMessage());
+            Log.w("GooglePaymentRequest", ex.getMessage());
         }
         return transactionInfo;
     }
@@ -70,23 +70,23 @@ public class PaymentRequest {
         try {
             jsonObject.put("merchantName", merchantName);
         } catch (JSONException ex) {
-            Log.w("PaymentRequest", ex.getMessage());
+            Log.w("GooglePaymentRequest", ex.getMessage());
         }
         return jsonObject;
     }
 
     public Optional<JSONObject> getPaymentDataRequest() {
-        JSONObject paymentDataRequest = PaymentUtils.getBaseRequest();
+        JSONObject paymentDataRequest = GooglePaymentUtils.getBaseRequest();
         try {
             paymentDataRequest.put(
                     "allowedPaymentMethods",
                     new JSONArray()
-                            .put(PaymentUtils.getCardPaymentMethod(pubKey)));
+                            .put(GooglePaymentUtils.getCardPaymentMethod(pubKey)));
             paymentDataRequest.put("transactionInfo", getTransactionInfo());
             paymentDataRequest.put("merchantInfo", getMerchantInfo());
             return Optional.of(paymentDataRequest);
         } catch(JSONException ex) {
-            Log.w("PaymentRequest", ex.getMessage());
+            Log.w("GooglePaymentRequest", ex.getMessage());
         }
         return Optional.empty();
     }
