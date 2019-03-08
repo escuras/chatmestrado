@@ -374,7 +374,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 return true;
             }else{
-                return true;
+                return false;
             }
 
         }
